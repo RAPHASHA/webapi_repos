@@ -35,7 +35,7 @@
                 '_pnum'=>$_pnum,
                 '_pnum2'=>$_pnum2,
                 '_active'=>$_active,
-                'userType'=>$userType,
+                '_userType'=>$_userType,
                 '_password' => $_password
             );
 

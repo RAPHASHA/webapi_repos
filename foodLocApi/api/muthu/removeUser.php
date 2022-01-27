@@ -3,8 +3,7 @@
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: Application/json');
     header('Access-Control-Allow-Methods: DELETE');
-    header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type,
-     Access-Control-Allow-Methods, Authorisation, X-Requested-With');
+    header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorisation, X-Requested-With');
 
      include_once '../../config/Database.php';
      include_once '../../models/muthu.php';
@@ -20,7 +19,7 @@
      $data = json_decode(file_get_contents('php://input'));
 
      //set ID to remove user
-     $mt->_ID = $data->_ID;
+     $mt->_ID = isset($_GET['_ID']) ? $_GET['_ID'] : die();
 
      //removing the user
      if($mt->deleteUser()){

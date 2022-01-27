@@ -3,8 +3,7 @@
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: Aplication/json');
     header('Access-Control-Allow-Methos: POST');
-    header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,
-    Access-Control-Allow-Methods, Authorisation, X-requested-With');
+    header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type, Access-Control-Allow-Methods, Authorisation, X-requested-With');
 
     include_once '../../config/Database.php';
     include_once '../../models/muthu.php';
@@ -19,14 +18,16 @@
     //get raw posted data
     $data = json_decode(file_get_contents('php://input'));
 
+    $hashed_password = sha1($data->_password);
+
     $mt->_name = $data->_name;
     $mt->_sname = $data->_sname;
     $mt->_pnum = $data->_pnum;
     $mt->_pnum2 = $data->_pnum2;
     $mt->_email = $data->_email;
-    $mt->_password = $data->_password;
+    $mt->_password = $hashed_password;
     $mt->_active = $data->_active;
-    $mt->userType = $data->userType;
+    $mt->_userType = $data->_userType;
 
     if($mt->create_user()){
         echo json_encode(

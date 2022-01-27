@@ -30,7 +30,7 @@
         '_pnum' => $muthu->_pnum,
         '_pnum2' => $muthu->_pnum2,
         '_active' => $muthu->_active,
-        'userType' => $muthu->userType,
+        '_userType' => $muthu->_userType,
         '_password' => $muthu->_password,
     );
 
