@@ -70,7 +70,9 @@
 
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if($this->_password == $row['_password']){
+            $hash_pass = sha1($this->_password);
+            
+            if($hash_pass == $row['_password']){
                 //set params
                 $this->_ID = $row['_ID'];
                 $this->_name = $row['_name'];
@@ -100,7 +102,7 @@
         public function create_user(){
 
             $query = 'INSERT INTO ' . $this->table . ' set _name = :name, _sname = :sname, _email = :email, 
-            _pnum = :pnum, _pnum2 = :pnum2, _active = :active, userType = :userType, _password = :password';
+            _pnum = :pnum, _pnum2 = :pnum2, _active = :active, _userType = :userType, _password = :password';
 
             $stmt = $this->conn->prepare($query);
             
@@ -111,7 +113,7 @@
             $this->_pnum = htmlspecialchars($this->_pnum);
             $this->_pnum2 = htmlspecialchars($this->_pnum2);
             $this->_active = htmlspecialchars($this->_active);
-            $this->userType = htmlspecialchars($this->userType);
+            $this->userType = htmlspecialchars($this->_userType);
             $this->_password = htmlspecialchars($this->_password);
 
             //bind data
@@ -122,7 +124,7 @@
             $stmt->bindParam(':pnum2', $this->_pnum2);
             $stmt->bindParam(':active', $this->_active);
             $stmt->bindParam(':password', $this->_password);
-            $stmt->bindParam(':userType', $this->userType);
+            $stmt->bindParam(':userType', $this->_userType);
             
 
             if($stmt->execute()){
@@ -166,7 +168,7 @@
         //update user details
         public function update(){
             $query = 'UPDATE ' . $this->table . ' SET  _name = :_name, _sname = :_sname,
-             _email = :_email, _pnum = :_pnum, _pnum2 = :_pnum2, _active = :_active, userType = :userType,
+             _email = :_email, _pnum = :_pnum, _pnum2 = :_pnum2, _active = :_active, _userType = :_userType,
               _password = :_password WHERE _ID = :_ID';
 
             //prepare statement
@@ -178,7 +180,7 @@
             $this->_email = htmlspecialchars(strip_tags($this->_email));
             $this->_pnum = htmlspecialchars(strip_tags($this->_pnum));
             $this->_pnum2 = htmlspecialchars(strip_tags($this->_pnum2));
-            $this->userType = htmlspecialchars(strip_tags($this->userType));
+            $this->userType = htmlspecialchars(strip_tags($this->_userType));
             $this->_password = htmlspecialchars(strip_tags($this->_password));
             $this->_active = htmlspecialchars(strip_tags($this->_active));
             $this->_ID =htmlspecialchars((strip_tags($this->_ID)));
@@ -190,7 +192,7 @@
             $stmt->bindParam(':_pnum', $this->_pnum);
             $stmt->bindParam(':_pnum2', $this->_pnum2);
             $stmt->bindParam(':_active', $this->_active);
-            $stmt->bindParam(':userType', $this->userType);
+            $stmt->bindParam(':_userType', $this->_userType);
             $stmt->bindParam(':_password', $this->_password);
             $stmt->bindParam(':_ID', $this->_ID);
 
