@@ -33,7 +33,6 @@
                 '_sname'=>$_sname,
                 '_email'=>$_email,
                 '_pnum'=>$_pnum,
-                '_pnum2'=>$_pnum2,
                 '_active'=>$_active,
                 '_userType'=>$_userType,
                 '_password' => $_password

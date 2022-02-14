@@ -1,10 +1,10 @@
 <?php
     class Database{
         //connection vars, params
-        private $host='sql11.freemysqlhosting.net';
-        private $username='sql11467632';
-        private $db_name='sql11467632';
-        private $password='MjUn6tYTQ1';
+        private $host='localhost';
+        private $username='raphasha';
+        private $db_name='foodlocdb';
+        private $password='yyDVrgL8ndtw8T49';
         private $conn;
 
         public function connect(){

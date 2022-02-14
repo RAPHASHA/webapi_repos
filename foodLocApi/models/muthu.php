@@ -8,7 +8,6 @@
         public $_name;
         public $_sname;
         public $_pnum;
-        public $_pnum2;
         public $_email; 
         public $_active;
         public $_userType;
@@ -21,7 +20,7 @@
         
         //function to retrieve all users
         public function read(){
-            $query = 'SELECT _ID, _name, _sname, _pnum, _pnum2, _email, _active, _userType, _password FROM ' . $this->table;
+            $query = 'SELECT _ID, _name, _sname, _pnum, _email, _active, _userType, _password FROM ' . $this->table;
             
             $stmt = $this->conn->prepare($query);
 
@@ -32,7 +31,7 @@
 
         //function to get user by ID
         public function read_user(){
-            $query = 'SELECT _ID, _name, _sname, _email, _pnum, _pnum2, _active, _userType, _password FROM ' . $this->table .' WHERE _ID= ?';
+            $query = 'SELECT _ID, _name, _sname, _email, _pnum, _active, _userType, _password FROM ' . $this->table .' WHERE _ID= ?';
 
             $stmt = $this->conn->prepare($query);
 
@@ -49,7 +48,6 @@
             $this->_sname = $row['_sname'];
             $this->_email = $row['_email'];
             $this->_pnum = $row['_pnum'];
-            $this->_pnum2 = $row['_pnum2'];
             $this->_active = $row['_active'];
             $this->_userType = $row['_userType'];
             $this->_password = $row['_password'];
@@ -58,7 +56,7 @@
 
         //user login
         public function login(){
-            $query = 'SELECT _ID, _name, _sname, _email, _pnum, _pnum2, _active, _userType, _password FROM ' . $this->table .' WHERE _email= ? ';
+            $query = 'SELECT _ID, _name, _sname, _email, _pnum, _active, _userType, _password FROM ' . $this->table .' WHERE _email= ? ';
 
             $stmt = $this->conn->prepare($query);
 
@@ -79,7 +77,6 @@
                 $this->_sname = $row['_sname'];
                 $this->_email = $row['_email'];
                 $this->_pnum = $row['_pnum'];
-                $this->_pnum2 = $row['_pnum2'];
                 $this->_active = $row['_active'];
                 $this->_userType = $row['_userType'];
                 $this->_password = $row['_password'];
@@ -89,7 +86,6 @@
                 $this->_sname = null;
                 $this->_email = null;
                 $this->_pnum = null;
-                $this->_pnum2 = null;
                 $this->_active = null;
                 $this->_userType = null;
                 $this->_password = null;
@@ -102,7 +98,7 @@
         public function create_user(){
 
             $query = 'INSERT INTO ' . $this->table . ' set _name = :name, _sname = :sname, _email = :email, 
-            _pnum = :pnum, _pnum2 = :pnum2, _active = :active, _userType = :userType, _password = :password';
+            _pnum = :pnum, _active = :active, _userType = :userType, _password = :password';
 
             $stmt = $this->conn->prepare($query);
             
@@ -111,7 +107,6 @@
             $this->_sname = htmlspecialchars($this->_sname);
             $this->_email = htmlspecialchars($this->_email);
             $this->_pnum = htmlspecialchars($this->_pnum);
-            $this->_pnum2 = htmlspecialchars($this->_pnum2);
             $this->_active = htmlspecialchars($this->_active);
             $this->userType = htmlspecialchars($this->_userType);
             $this->_password = htmlspecialchars($this->_password);
@@ -121,7 +116,6 @@
             $stmt->bindParam(':sname', $this->_sname);
             $stmt->bindParam(':email', $this->_email);
             $stmt->bindParam(':pnum', $this->_pnum);
-            $stmt->bindParam(':pnum2', $this->_pnum2);
             $stmt->bindParam(':active', $this->_active);
             $stmt->bindParam(':password', $this->_password);
             $stmt->bindParam(':userType', $this->_userType);
@@ -168,7 +162,7 @@
         //update user details
         public function update(){
             $query = 'UPDATE ' . $this->table . ' SET  _name = :_name, _sname = :_sname,
-             _email = :_email, _pnum = :_pnum, _pnum2 = :_pnum2, _active = :_active, _userType = :_userType,
+             _email = :_email, _pnum = :_pnum, _active = :_active, _userType = :_userType,
               _password = :_password WHERE _ID = :_ID';
 
             //prepare statement
@@ -179,7 +173,6 @@
             $this->_sname = htmlspecialchars(strip_tags($this->_sname));
             $this->_email = htmlspecialchars(strip_tags($this->_email));
             $this->_pnum = htmlspecialchars(strip_tags($this->_pnum));
-            $this->_pnum2 = htmlspecialchars(strip_tags($this->_pnum2));
             $this->userType = htmlspecialchars(strip_tags($this->_userType));
             $this->_password = htmlspecialchars(strip_tags($this->_password));
             $this->_active = htmlspecialchars(strip_tags($this->_active));
@@ -190,7 +183,6 @@
             $stmt->bindParam(':_sname', $this->_sname);
             $stmt->bindParam(':_email', $this->_email);
             $stmt->bindParam(':_pnum', $this->_pnum);
-            $stmt->bindParam(':_pnum2', $this->_pnum2);
             $stmt->bindParam(':_active', $this->_active);
             $stmt->bindParam(':_userType', $this->_userType);
             $stmt->bindParam(':_password', $this->_password);

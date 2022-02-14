@@ -28,7 +28,6 @@
         '_sname' => $muthu->_sname,
         '_email' => $muthu->_email,
         '_pnum' => $muthu->_pnum,
-        '_pnum2' => $muthu->_pnum2,
         '_active' => $muthu->_active,
         '_userType' => $muthu->_userType,
         '_password' => $muthu->_password,

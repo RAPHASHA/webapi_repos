@@ -27,7 +27,6 @@
      $mt->_sname = $data->_sname;
      $mt->_email = $data->_email;
      $mt->_pnum = $data->_pnum;
-     $mt->_pnum2 = $data->_pnum2;
      $mt->_active = $data->_active;
      $mt->_userType = $data->_userType;
      $mt->_password = $hashed_password;
